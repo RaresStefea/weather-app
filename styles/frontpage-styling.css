@@ -94,7 +94,7 @@ body {
     .menu {
         display: none;
         flex-direction: column;
-        width: 100%;
+        width: auto;
         gap: 1.5rem;
     }
 
