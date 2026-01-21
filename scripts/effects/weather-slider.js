@@ -2,7 +2,7 @@
 export function initWeatherRotator() {
     const rotator = document.querySelector('.weather-rotator');
 
-    const words = ["sunny", "cloudy", "rainy", "windy", "stormy", "foggy"];
+    const words = ["sunny", "cloudy", "rainy", "windy", "stormy", "foggy","snowy"];
     let index = 0;
     let intervalId = null;
 

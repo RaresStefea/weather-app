@@ -29,3 +29,16 @@
     opacity: 0;
     transform: scale(0.96);
 }
+
+.weeks-heading{
+    font-size: clamp(1rem, 2vw, 1rem);
+    color: white;
+    text-shadow: 0.2px 0.5px 0.5px hsl(0deg 0% 0% / 0.49);
+    backdrop-filter: blur(3px);
+   
+} 
+
+.weeks-heading h2{
+    padding: 1rem 1rem;
+    margin: 0 auto;
+}
