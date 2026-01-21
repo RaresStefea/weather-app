@@ -1,20 +1,31 @@
 export async function fetchAndRenderToday(lat, lon) {
 
-    const controller=new AbortController();
+    const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
+
     try {
         const url = new URL("https://api.open-meteo.com/v1/forecast");
-    
 
         url.searchParams.set("latitude", lat);
         url.searchParams.set("longitude", lon);
         url.searchParams.set("timezone", "auto");
 
-        url.searchParams.set("hourly",["temperature_2m","apparent_temperature","relative_humidity_2m","precipitation_probability","cloud_cover","uv_index","wind_speed_10m"].join(","));
+
+        url.searchParams.set("forecast_days", "7");
+
+        url.searchParams.set("hourly", [
+            "temperature_2m",
+            "apparent_temperature",
+            "relative_humidity_2m",
+            "precipitation_probability",
+            "cloud_cover",
+            "uv_index",
+            "wind_speed_10m"
+        ].join(","));
 
         url.searchParams.set("current_weather", "true");
 
-        const result = await fetch(url.toString());
+        const result = await fetch(url.toString(), { signal: controller.signal });
 
         clearTimeout(timeout);
 
@@ -35,9 +46,7 @@ export async function fetchAndRenderToday(lat, lon) {
         document.querySelector(".temp-c").textContent = `${Math.round(tempC)}°`;
         document.querySelector(".temp-f").textContent = `${Math.round(tempF)}°F`;
 
-      
         const values = document.querySelectorAll(".extra-item .value");
-
         values[0].textContent = Math.round(uv);
         values[1].textContent = `${Math.round(precipitation)}%`;
         values[2].textContent = `${Math.round(humidity)}%`;
@@ -45,11 +54,16 @@ export async function fetchAndRenderToday(lat, lon) {
         values[4].textContent = `${Math.round(feelsLike)}°`;
         values[5].textContent = `${Math.round(cloudCover)}%`;
 
+  
+        return {today: { tempC, tempF, uv, precipitation, humidity, wind, feelsLike, cloudCover },raw: data};
+
     } catch (err) {
         if (err.name === 'AbortError') {
             console.error("Open-Meteo fetch aborted due to timeout");
-        } else
-        console.error("Open-Meteo fetch failed:", err);
+        } else {
+            console.error("Open-Meteo fetch failed:", err);
+        }
+        return null;
     }
 }
 
@@ -61,6 +75,5 @@ function findCurrentHourIndex(times) {
     const hh = String(now.getHours()).padStart(2, "0");
 
     const target = `${yyyy}-${mm}-${dd}T${hh}:00`;
-
-    return times.indexOf(target) !== -1 ? times.indexOf(target): 0;
+    return times.indexOf(target) !== -1 ? times.indexOf(target) : 0;
 }

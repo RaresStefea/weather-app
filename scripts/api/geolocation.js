@@ -5,48 +5,54 @@ const LOCATION_TIMEOUT = 5000;
 const locationName = document.getElementById("locationName");
 
 export function getLocation() {
-    if (!navigator.geolocation) {
-        setLocationText("your location.");
-        console.warn("Geolocation is not supported by this browser.");
-        return;
-    }
-
-    const timeoutId = setTimeout(() => {
-        setLocationText("your location.");
-        console.warn("Geolocation request timed out.");
-    }, LOCATION_TIMEOUT);
-
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            clearTimeout(timeoutId);
-            handleSuccess(position);
-        },
-        () => {
-            clearTimeout(timeoutId);
+    return new Promise((resolve, reject) => {
+        if (!navigator.geolocation) {
             setLocationText("your location.");
-            console.warn("Geolocation permission denied or unavailable.");
+            console.warn("Geolocation is not supported by this browser.");
+            return reject("no-geo");
         }
-    );
-}
 
-async function handleSuccess(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    setDayNightIcon(lat, lon);
-    setCityName(lat, lon);
-    fetchAndRenderToday(lat, lon);
+        const timeoutId = setTimeout(() => {
+            setLocationText("your location.");
+            console.warn("Geolocation request timed out.");
+            reject("timeout");
+        }, LOCATION_TIMEOUT);
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                clearTimeout(timeoutId);
+
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                setDayNightIcon(lat, lon);
+                setCityName(lat, lon);
+                fetchAndRenderToday(lat, lon);
+
+                resolve({ lat, lon });
+            },
+            () => {
+                clearTimeout(timeoutId);
+                setLocationText("your location.");
+                console.warn("Geolocation permission denied or unavailable.");
+                reject("denied");
+            }
+        );
+    });
 }
 
 async function setCityName(lat, lon) {
     try {
-        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+        );
         const data = await response.json();
 
         const city =
-            (data.address && (data.address.city ||
-                              data.address.town ||
-                              data.address.village ||
-                              data.address.county)) ||
+            (data.address &&
+                (data.address.city ||
+                 data.address.town ||
+                 data.address.village ||
+                 data.address.county)) ||
             "your location.";
 
         setLocationText(city);
@@ -55,7 +61,6 @@ async function setCityName(lat, lon) {
         console.error("Error fetching location data:", error);
     }
 }
-
 
 async function setDayNightIcon(lat, lon) {
     const iconContainer = document.querySelector(".day-night-icon");
@@ -67,14 +72,11 @@ async function setDayNightIcon(lat, lon) {
         );
         const json = await res.json();
 
-        const sunriseUTC = new Date(json.results.sunrise);
-        const sunsetUTC  = new Date(json.results.sunset);
+        const sunrise = new Date(json.results.sunrise);
+        const sunset  = new Date(json.results.sunset);
+        const now     = new Date();
 
-        const sunriseLocal = new Date(sunriseUTC.toLocaleString());
-        const sunsetLocal  = new Date(sunsetUTC.toLocaleString());
-        const nowLocal     = new Date();
-
-        const isDay = nowLocal >= sunriseLocal && nowLocal < sunsetLocal;
+        const isDay = now >= sunrise && now < sunset;
 
         iconContainer.innerHTML = isDay ? icons.day : icons.night;
         iconContainer.setAttribute(
