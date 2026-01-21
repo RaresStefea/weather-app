@@ -1,6 +1,10 @@
 :root{
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1f
+
 }
 
 
