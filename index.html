@@ -112,9 +112,13 @@
                 <h2>This week's weather:</h2>
             </section>
 
+            <!-- Splitting is done for:
+                    - next 3 days in the top row after today
+                    - next 3 days in the bottom row after the last of the top row
+            -->
             <div class="forecast-container">
-                <div class="forecast-row top-row"></div>
-                <div class="forecast-row bottom-row"></div>
+                <div class="forecast-row top-row" aria-label="Temperature for the next 3 days after today."></div>
+                <div class="forecast-row bottom-row" aria-label="Temperature for the next 3 days after the last one on the first row."></div>
             </div>
 
 
