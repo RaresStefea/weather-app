@@ -73,7 +73,6 @@ function makeForecastCardHTML(d) {
     return `
         <div class="weather-card forecast-card">
             <div class="weather-card-header">
-                <!-- Weekday instead of SVG -->
                 <div class="day-night-icon weekday-label">${weekday}</div>
 
                 <div class="weather-temp" aria-live="polite">
