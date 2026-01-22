@@ -1,4 +1,3 @@
-
 export function renderForecastFromRaw(raw) {
     if (!raw || !raw.hourly) {
         console.warn("No raw data for forecast");
@@ -27,7 +26,7 @@ export function renderForecastFromRaw(raw) {
 }
 
 function buildDailySummaries(data) {
-    const grouped = {}; // { 'YYYY-MM-DD': { arrays... } }
+    const grouped = {}; 
 
     for (let i = 0; i < data.hourly.time.length; i++) {
         const date = data.hourly.time[i].split("T")[0];
