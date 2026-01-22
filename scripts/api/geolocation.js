@@ -7,13 +7,13 @@ const locationName = document.getElementById("locationName");
 export function getLocation() {
     return new Promise((resolve, reject) => {
         if (!navigator.geolocation) {
-            setLocationText("your location.");
+            setLocationText("your location");
             console.warn("Geolocation is not supported by this browser.");
             return reject("no-geo");
         }
 
         const timeoutId = setTimeout(() => {
-            setLocationText("your location.");
+            setLocationText("your location");
             console.warn("Geolocation request timed out.");
             reject("timeout");
         }, LOCATION_TIMEOUT);
@@ -32,7 +32,7 @@ export function getLocation() {
             },
             () => {
                 clearTimeout(timeoutId);
-                setLocationText("your location.");
+                setLocationText("your location");
                 console.warn("Geolocation permission denied or unavailable.");
                 reject("denied");
             }
@@ -57,7 +57,7 @@ async function setCityName(lat, lon) {
 
         setLocationText(city);
     } catch (error) {
-        setLocationText("your location.");
+        setLocationText("your location");
         console.error("Error fetching location data:", error);
     }
 }
