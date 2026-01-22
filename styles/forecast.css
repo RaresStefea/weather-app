@@ -25,3 +25,7 @@
   width: min(350px, 100%);  
   margin: 0;                  
 }
+
+.weekday-label{
+    font-size: clamp(2rem, 4vw, 3rem);
+}
