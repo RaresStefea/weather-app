@@ -1,0 +1,288 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../media/fonts/Roboto/Roboto-VariableFont_wdth\\,wght.ttf") format(woff2-variations);
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../media/fonts/Roboto/Roboto-Italic-VariableFont_wdth\\,wght.ttf") format(woff2-variations);
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+:root {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1f;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(115deg, rgba(98, 207, 244, 0.9), rgba(44, 103, 242, 0.9));
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 0.4rem 0.75rem;
+  color: #ffffff;
+  margin: 0.75rem;
+  box-shadow: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49);
+}
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+.navbar :is(.navbar-logo, .navbar-settings, .menu) {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.navbar svg {
+  width: 2rem;
+  height: 2rem;
+  filter: drop-shadow(0.2px 0.5px 0.5px rgba(0, 0, 0, 0.49));
+}
+.navbar .hamburger {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.navbar .menu {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+.navbar .menu.open {
+  display: flex;
+}
+.navbar .header-button {
+  font-size: 2rem;
+  text-shadow: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49);
+  border-radius: 10px;
+  transition: 0.1s ease;
+  padding: 0.2rem 0.4rem;
+}
+.navbar :is(.header-button, .navbar-settings, .navbar-logo):hover {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(3px);
+  cursor: pointer;
+}
+.navbar :is(.navbar-settings, .navbar-logo) {
+  border-radius: 10px;
+  transition: 0.1s ease;
+  padding: 0.4rem 0.75rem;
+}
+@media (max-width: 700px) {
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+  }
+  .navbar .hamburger {
+    display: block;
+    margin-left: auto;
+    color: #ffffff;
+    text-shadow: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49);
+  }
+  .navbar .menu {
+    display: none;
+    flex-direction: column;
+    width: auto;
+    gap: 1rem;
+  }
+  .navbar > .navbar-settings {
+    display: none;
+  }
+}
+
+.content-heading {
+  padding: 3rem 1rem;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.content-heading h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #ffffff;
+  font-weight: 500;
+  text-shadow: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49);
+  backdrop-filter: blur(3px);
+}
+
+.weather-rotator {
+  display: inline-block;
+  font-weight: 600;
+  transition: opacity 0.5s ease, transform 0.4s ease;
+  background: rgba(135, 206, 250, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+}
+.weather-rotator.fade-out {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.weeks-heading {
+  padding: 1rem 1rem;
+  margin: 0 auto;
+}
+.weeks-heading h2 {
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2rem);
+  backdrop-filter: blur(3px);
+  text-shadow: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49);
+  color: #ffffff;
+}
+
+.card-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-card {
+  width: auto;
+  max-width: 420px;
+  padding: 1rem;
+  margin: 0.5rem 0 2rem 0;
+  background: rgba(255, 255, 255, 0.26);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.2px);
+  -webkit-backdrop-filter: blur(3.2px);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+.weather-card .weather-card-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1rem;
+}
+.weather-card .weather-card-header .day-night-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #ffffff;
+}
+.weather-card .weather-temp {
+  text-align: right;
+}
+.weather-card .weather-temp .temp-c {
+  display: block;
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+}
+.weather-card .weather-temp .temp-f {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #d1d5db;
+}
+.weather-card .weather-extra {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.weather-card .weather-extra .extra-item {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.21);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(255, 255, 255, 0.63);
+}
+.weather-card .weather-extra .extra-item .label {
+  display: block;
+  font-size: 0.75rem;
+  color: #36454F;
+}
+.weather-card .weather-extra .extra-item .value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+  color: #ffffff;
+}
+
+.forecast-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  margin-top: 1.5rem;
+  gap: 2rem;
+}
+.forecast-container .forecast-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: auto;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+}
+.forecast-container .forecast-row .forecast-card {
+  position: relative;
+  box-sizing: border-box;
+  flex: 0 1 350px;
+  width: min(350px, 100%);
+  margin: 0;
+}
+.forecast-container .forecast-row .forecast-card .weekday-label {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(115deg, rgba(98, 207, 244, 0.9), rgba(44, 103, 242, 0.9));
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 0.6rem 0.9rem;
+  margin: 2rem 1rem 1rem 1rem;
+  color: #ffffff;
+  box-shadow: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49);
+}
+.footer .footer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: auto;
+  text-shadow: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49);
+}
+
+/*# sourceMappingURL=main.css.map */

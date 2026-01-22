@@ -1,0 +1,29 @@
+@mixin font-face(
+  $family,
+  $file,
+  $format: "woff2-variations",
+  $weight: 100 900,
+  $style: normal,
+  $display: swap,
+  $path: null
+) {
+  @font-face {
+    font-family: $family;
+
+    @if $path != null {
+      src: url("#{$path}/#{$file}") format(#{$format});
+    } @else {
+      src: url("#{$file}") format(#{$format});
+    }
+    font-weight: $weight;
+    font-style: $style;
+    font-display: $display;
+  }
+}
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}

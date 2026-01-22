@@ -1,0 +1,15 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "- ~~footer~~ - ~~hovering effect on navbar~~ - hamburger menu complete - ~~rename buttons & be able to press them~~ - ~~Today is sunny,cloudy rollercoaster of words in {yourlocation}~~",
+  "main": "index.js",
+  "scripts": {
+    "build" : "sass styles/main.scss styles/main.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.97.3"
+  }
+}
