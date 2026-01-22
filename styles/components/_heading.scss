@@ -10,7 +10,7 @@
   h1 {
     font-size: clamp(2rem, 4vw, 3rem);
     color: $color-white;
-    font-weight: 500;
+    font-weight: $font-weight-xxl;
     text-shadow: $shadow-text-sm;
     backdrop-filter: blur($blur-sm);
   }
@@ -34,14 +34,14 @@
 }
 
 .weeks-heading {
-  font-size: clamp(1.5rem, 2vw, 1.5rem);
-  font-weight: 500;
-  color: $color-white;
-  text-shadow: $shadow-text-sm;
-  backdrop-filter: blur($blur-sm);
-
-  h2 {
     padding: 1rem 1rem;
     margin: 0 auto;
+  h2 {
+    font-weight: $font-weight-xxl;
+    font-size: clamp(2rem, 4vw, 2rem);
+     backdrop-filter: blur($blur-sm);
+    text-shadow: $shadow-text-sm;
+    color: $color-white;
+
   }
 }
