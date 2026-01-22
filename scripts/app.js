@@ -1,4 +1,3 @@
-
 import { initWeatherRotator } from './effects/weather-slider.js';
 import { getLocation } from './api/geolocation.js';
 import { fetchAndRenderToday } from './api/weatherdata.js';
