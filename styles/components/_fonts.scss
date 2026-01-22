@@ -1,0 +1,21 @@
+@use "../abstracts/index" as *;
+
+@include font-face(
+  $font-family-roboto,
+  $roboto-roman-file,
+  "woff2-variations",
+  $roboto-weight-range,
+  normal,
+  swap,
+  $asset-font-path
+);
+
+@include font-face(
+$font-family-roboto,
+  $roboto-italic-file,
+  "woff2-variations",
+  $roboto-weight-range,
+  italic,
+  swap,
+  $asset-font-path
+);

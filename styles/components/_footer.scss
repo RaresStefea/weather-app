@@ -1,0 +1,22 @@
+@use "../abstracts/index" as *;
+
+.footer {
+  @include flex(row, center, center);
+
+  background: $navbar-bg-gradient;
+  backdrop-filter: blur($blur-md);
+  border-radius: $radius-lg;
+  padding: 0.6rem 0.9rem;
+  margin: $space-xl $space-md $space-md $space-md;
+
+  color: $color-white;
+  box-shadow: $shadow-sm;
+
+  .footer-content {
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+    gap: $space-lg;
+    width: auto;
+    text-shadow: $shadow-text-sm;
+  }
+}

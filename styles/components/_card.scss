@@ -1,0 +1,89 @@
+
+@use "../abstracts/index" as *;
+
+.card-section {
+  @include flex(row, center, center);
+}
+
+.weather-card {
+  width: auto;
+  max-width: 420px;
+  padding: $space-md;
+  margin: $space-sm2 0 $space-xl 0;
+  background: $glass-bg-card;
+  border-radius: $radius-card;
+  box-shadow: $shadow-glass;
+  backdrop-filter: blur($blur-card);
+  -webkit-backdrop-filter: blur($blur-card);
+
+  border: $glass-border-card;
+
+  .weather-card-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: $space-md;
+
+    .day-night-icon {
+      width: 4rem;
+      height: 4rem;
+      color: $color-white;
+    }
+  }
+
+  .weather-temp {
+    text-align: right;
+
+    .temp-c {
+      display: block;
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1;
+      color: $color-white;
+    }
+
+    .temp-f {
+      display: block;
+
+      // original: 0.5rem
+      margin-top: $space-sm2;
+
+      font-size: 0.95rem;
+      color: #d1d5db;
+    }
+  }
+  .weather-extra {
+    margin-top: $space-md;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-md;
+
+    .extra-item {
+      padding: $space-sm2 $space-md;
+      text-align: center;
+
+      background: $glass-bg-tile;
+      border-radius: $radius-card;
+      box-shadow: $shadow-glass;
+
+      backdrop-filter: blur($blur-tile);
+      -webkit-backdrop-filter: blur($blur-tile);
+
+      border: $glass-border-tile;
+
+      .label {
+        display: block;
+        font-size: 0.75rem;
+        color: #36454F;
+      }
+
+      .value {
+        display: block;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: $space-2xs;
+        color: $color-white;
+      }
+    }
+  }
+}

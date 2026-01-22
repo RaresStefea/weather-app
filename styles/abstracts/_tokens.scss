@@ -1,0 +1,50 @@
+$asset-font-path: "../media/fonts" !default;
+
+$font-family-roboto: "Roboto" !default;
+$roboto-roman-file: "Roboto/Roboto-VariableFont_wdth\\,wght.ttf" !default;
+$roboto-italic-file: "Roboto/Roboto-Italic-VariableFont_wdth\\,wght.ttf" !default;
+$roboto-weight-range: 100 900 !default;
+
+$color-white: #ffffff !default;
+
+$hover-bg-light: rgba(255, 255, 255, 0.15) !default;
+
+$space-2xs: 0.2rem !default;
+$space-xs: 0.4rem !default;
+$space-sm2: 0.5rem !default;
+$space-sm: 0.75rem !default;
+$space-md: 1rem !default;
+$space-lg: 1.5rem !default;
+$space-xl: 2rem !default;
+$space-2xl: 5rem !default;
+
+$radius-sm: 6px !default;
+$radius-md: 10px !default;
+$radius-lg: 20px !default;
+$radius-card: 16px !default;
+
+$font-xl: 2rem !default;
+$icon-lg: 2rem !default;
+
+$blur-sm: 3px !default;
+$blur-md: 10px !default;
+$blur-card: 3.2px !default;
+$blur-tile: 8.5px !default;
+
+$shadow-sm: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49) !default;
+$shadow-text-sm: 0.2px 0.5px 0.5px hsla(0, 0%, 0%, 0.49) !default;
+$drop-shadow-sm: drop-shadow(0.2px 0.5px 0.5px rgba(0, 0, 0, 0.49)) !default;
+$shadow-glass: 0 4px 30px rgba(0, 0, 0, 0.1) !default;
+
+$glass-bg-card: rgba(255, 255, 255, 0.26) !default;
+$glass-bg-tile: rgba(255, 255, 255, 0.21) !default;
+$glass-border-card: 1px solid rgba(255, 255, 255, 0.32) !default;
+$glass-border-tile: 1px solid rgba(255, 255, 255, 0.63) !default;
+
+$navbar-bg-gradient: linear-gradient(
+  115deg,
+  rgba(98, 207, 244, 0.9),
+  rgba(44, 103, 242, 0.9)
+) !default;
+
+$transition-fast: 0.1s ease !default;

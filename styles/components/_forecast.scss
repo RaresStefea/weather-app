@@ -1,0 +1,31 @@
+
+@use "../abstracts/index" as *;
+
+.forecast-container {
+  @include flex(column, center, center);
+
+  width: auto;
+  margin-top: $space-lg;   
+  gap: $space-xl;          
+
+  .forecast-row {
+    @include flex(row, center, stretch);
+    flex-wrap: wrap;
+    gap: $space-xl;
+    width: auto;
+    padding: 0 $space-sm;
+    box-sizing: border-box;
+
+    .forecast-card {
+      position: relative;
+      box-sizing: border-box;
+      flex: 0 1 350px;
+      width: min(350px, 100%);
+      margin: 0;
+
+      .weekday-label {
+        font-size: clamp(2rem, 4vw, 3rem);
+      }
+    }
+  }
+}
