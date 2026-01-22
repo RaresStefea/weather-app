@@ -1,26 +1,53 @@
 
 export function initWeatherRotator() {
-    const rotator = document.querySelector('.weather-rotator');
+  const rotator = document.querySelector('.weather-rotator');
+  if (!rotator) return;
 
-    const words = ["sunny", "cloudy", "rainy", "windy", "stormy", "foggy","snowy"];
-    let index = 0;
-    let intervalId = null;
+  const words = ["sunny", "cloudy", "rainy", "windy", "stormy", "foggy", "snowy"];
+  let index = 0;
+  let intervalId = null;
+  let timeoutId = null;
 
-    function rotateWords() {
-        intervalId = setInterval(() => {
-            rotator.classList.add("fade-out");
+  function start() {
+    if (intervalId)
+         return; 
 
-            setTimeout(() => {
-                index = (index + 1) % words.length;
-                rotator.textContent = words[index];
-                rotator.classList.remove("fade-out");
-            }, 500);
+    intervalId = setInterval(() => {
+      rotator.classList.add("fade-out");
 
-        }, 2500);
+      if (timeoutId) clearTimeout(timeoutId);
+
+      timeoutId = setTimeout(() => {
+        index = (index + 1) % words.length;
+        rotator.textContent = words[index];
+        rotator.classList.remove("fade-out");
+      }, 500);
+
+    }, 2500);
+  }
+
+  function stop() {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
     }
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    }
+  }
 
-    rotateWords();
+  start();
 
-    rotator.addEventListener("mouseenter", () => clearInterval(intervalId));
-    rotator.addEventListener("mouseleave", rotateWords);
+  const onEnter = () => stop();
+  const onLeave = () => start();
+
+  rotator.addEventListener("mouseenter", onEnter);
+  rotator.addEventListener("mouseleave", onLeave);
+
+  return function cleanup() {
+    stop();
+    rotator.removeEventListener("mouseenter", onEnter);
+    rotator.removeEventListener("mouseleave", onLeave);
+  };
 }
