@@ -1,3 +1,5 @@
+@use "./tokens" as *;
+
 @mixin font-face(
   $family,
   $file,
@@ -26,4 +28,47 @@
   flex-direction: $direction;
   justify-content: $justify;
   align-items: $align;
+}
+
+
+@mixin nav-item-base {
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  transition: background-color $transition-fast, transform $transition-fast;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:hover {
+    background-color: $hover-bg-light;
+  }
+
+  &:active {
+    transform: translateY(0.5px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 2px;
+  }
 }

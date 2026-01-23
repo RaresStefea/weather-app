@@ -11,10 +11,17 @@
   color: $color-white;
   margin: $space-sm;
   box-shadow: $shadow-sm;
-  a {
-    text-decoration: none;
+
+  .navbar-logo a,
+  .navbar-settings,
+  .header-button {
+    @include nav-item-base;
+  }
+
+  .navbar-logo:visited {
     color: inherit;
   }
+
   :is(.navbar-logo, .navbar-settings, .menu) {
     @include flex(row, center, center);
   }
@@ -24,6 +31,7 @@
     height: $icon-lg;
     filter: $drop-shadow-sm;
   }
+
   .hamburger {
     display: none;
     font-size: $font-xl;
@@ -36,10 +44,12 @@
     flex: 1;
     @include flex(row, center, center);
     gap: $space-2xl;
+
     &.open {
       display: flex;
     }
   }
+
   .header-button {
     font-size: $font-xl;
     text-shadow: $shadow-text-sm;
