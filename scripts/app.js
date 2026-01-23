@@ -6,12 +6,19 @@ import { renderForecastFromRaw } from './api/forecast.js';
 document.addEventListener("DOMContentLoaded", async () => {
     initWeatherRotator();
 
+    try{
     const { lat, lon } = await getLocation();
 
     const result = await fetchAndRenderToday(lat, lon);
-    
-    if (!result) 
+
+     if (!result) 
         return;
 
     renderForecastFromRaw(result.raw);
+    }
+    catch(error){
+        console.warn("Could not get location or weather data:", error);
+        return;
+    }
+
 });
