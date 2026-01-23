@@ -15,14 +15,14 @@
 :root {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
-  display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1f;
+  grid-template-columns: 1fr;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  display: grid;
   background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);
 }
 
