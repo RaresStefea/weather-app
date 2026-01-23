@@ -18,6 +18,9 @@
 
   border: $glass-border-card;
 
+  .sr-only {
+    @include sr-only;
+  }
   .weather-card-header {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -44,8 +47,6 @@
 
     .temp-f {
       display: block;
-
-      // original: 0.5rem
       margin-top: $space-sm2;
 
       font-size: 0.95rem;

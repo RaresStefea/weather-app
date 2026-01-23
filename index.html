@@ -10,6 +10,7 @@
 
     <title>Weather</title>
 </head>
+
 <body>
 
     <header>
@@ -22,15 +23,14 @@
             </svg>
             </a>
         </section>
-       
         
-        <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">☰</button>
+            <button class="hamburger" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">☰</button>
 
-        <section class="menu">
-            <!-- TODO: ADD EXTRA OPTIONS IN THE navbar -->
-            <button class="header-button" aria-label="Favorite locations">Favorites</button>
-            <button class="header-button" aria-label="Meteorological Map">Map</button>
-        </section>
+            <section class="menu" id="main-menu" hidden>
+            <button class="header-button">Favorites</button>
+            <button class="header-button">Map</button>
+            </section>
+
 
         <section>
             <button class="navbar-settings header-button"  aria-label="Settings" >
@@ -53,7 +53,9 @@
           
             <section class="card-section" aria-label="Today's weather card">
 
-                <div class="weather-card today" role="group" aria-labelledby="today-heading">
+                <div class="weather-card today" role="group" aria-labelledby="today-weather-label">
+                    <h2 id="today-weather-label" class="sr-only">Today's Weather</h2>
+
                     <div class="weather-card-header">
 
                         <div class="day-night-icon">
